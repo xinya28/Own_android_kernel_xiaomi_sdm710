@@ -1,0 +1,28 @@
+# A simple action usage
+name: Build Kernel
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-Kernel:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Build Kernel
+        uses: dabao1955/kernel_build_action@main
+        with:
+          kernel-url: https://github.com/xinya28/Own_android_kernel_xiaomi_sdm710
+          kernel-dir: msm-4.9
+          kernel-branch: lineage-23.0
+          config: pyxis_defconfig
+          arch: arm64
+          aosp-gcc: true
+          aosp-clang: true
+          android-version: 11
+          aosp-clang-version: r383902b1
+          disable-lto: true
+          anykernel3: true
